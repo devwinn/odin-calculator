@@ -1,0 +1,50 @@
+#button-container {
+    height: 475px;
+    width: 475px;
+    background-color: antiquewhite;
+    border: 3px solid gray;
+    display: flex;
+
+}
+
+#display {
+    height: 150px;
+    width: 475px;
+    background-color: aliceblue;
+    border: 3px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.display-text {
+    margin-left: auto;
+    padding-right: 10px;
+}
+
+.num-row {
+    display: flex;
+    width: fit-content;
+}
+
+.number,
+.empty,
+.operator {
+
+    border: 2px solid gray;
+    width: 115px;
+    height: 115px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.numbers-container {
+    width: fit-content;
+}
+
+.operators-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
