@@ -1,3 +1,4 @@
+const displayText = document.getElementById('display-text');
 const numbers = document.getElementsByClassName('number');
 const operators = document.getElementsByClassName('operator');
 const reset = document.getElementById('reset');
@@ -5,8 +6,8 @@ const reset = document.getElementById('reset');
 
 let values = [];
 let op;
-let num1;
-let num2;
+let num1 = 0;
+let num2 = 0;
 
 reset.addEventListener('click', clear)
 
@@ -19,18 +20,29 @@ for (let i = 0; i < operators.length; i++) {
 }
 
 function getValue(e) {
-    values.push(parseInt(e.target.dataset.value));
-
+    values.push(parseFloat(e.target.dataset.value));
+    displayNum();
 
     console.log(values);
 }
 
 function getOperator(e) {
     if (e.target.dataset.value === '=') {
-        console.log("test op")
+        num2 = getNumber(values);
+        console.log(num2);
+        values = [evaluate(num1, num2, op)];
+        console.log(values);
+        displayNum();
+        console.log("test = op")
+    } else {
+        op = e.target.dataset.value;
+        num1 = getNumber(values);
+        console.log(`num1 = ${num1} ${op}`)
+        console.log(op);
+        values = [];
     }
-    op = e.target.dataset.value;
-    console.log(op);
+
+
 }
 
 function getNumber(numArray) {
@@ -44,6 +56,7 @@ function getNumber(numArray) {
 function clear() {
     values = [];
     op = undefined;
+    displayText.innerHTML = 0;
     console.log(values);
     console.log(op);
 }
@@ -54,11 +67,16 @@ function evaluate(firstNum, secondNum, op) {
         final = firstNum + secondNum;
     } else if (op === "-") {
         final = firstNum - secondNum;
-    } else if (op === "*") {
+    } else if (op === "x") {
         final = firstNum * secondNum;
     } else {
         final = firstNum / secondNum;
     }
 
     return final;
+}
+
+function displayNum() {
+    display = getNumber(values);
+    displayText.innerHTML = `${display}`;
 }
