@@ -30,7 +30,7 @@ function getOperator(e) {
     if (e.target.dataset.value === '=') {
         num2 = getNumber(values);
         console.log(num2);
-        values = [evaluate(num1, num2, op)];
+        values = [operate(num1, num2, op)];
         console.log(values);
         displayNum();
         console.log("test = op")
@@ -57,11 +57,9 @@ function clear() {
     values = [];
     op = undefined;
     displayText.innerHTML = 0;
-    console.log(values);
-    console.log(op);
 }
 
-function evaluate(firstNum, secondNum, op) {
+function operate(firstNum, secondNum, op) {
     let final;
     if (op === "+") {
         final = firstNum + secondNum;
@@ -70,7 +68,12 @@ function evaluate(firstNum, secondNum, op) {
     } else if (op === "x") {
         final = firstNum * secondNum;
     } else {
-        final = firstNum / secondNum;
+        if (num1 === 0 || num2 === 0) {
+            clear();
+            displayText.innerHTML = "err";
+        } else {
+            final = firstNum / secondNum;
+        }
     }
 
     return final;
