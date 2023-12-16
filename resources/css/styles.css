@@ -57,7 +57,8 @@ body {
 
 .number,
 .empty,
-.operator {
+.operator,
+.equals-operator {
 
     border: 2px solid gray;
     width: 115px;
